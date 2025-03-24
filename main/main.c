@@ -50,7 +50,7 @@ void pin_callback(uint gpio, uint32_t events) {
 void trigger_task(void *params) {
     while (1) {
         gpio_put(TRIGGER_PIN, 1);
-        sleep_us(10);
+        vTaskDelay(pdMS_TO_TICKS(1));
         gpio_put(TRIGGER_PIN, 0);
         xSemaphoreGive(xSemaphoreTrigger);
         vTaskDelay(pdMS_TO_TICKS(1000));
